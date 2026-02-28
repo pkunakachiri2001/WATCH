@@ -1,0 +1,153 @@
+/* ═══════════════════════════════════════════════
+   RYLO — Main App Shell Styles
+   ═══════════════════════════════════════════════ */
+
+.app-root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  overflow: hidden;
+}
+
+/* ─── Ambient Background ─── */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.03;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #bfc5cf 0%, transparent 70%);
+  top: -200px;
+  left: -100px;
+  animation-duration: 14s;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #9fa7b3 0%, transparent 70%);
+  bottom: -150px;
+  right: -100px;
+  animation-duration: 18s;
+  animation-delay: -6s;
+}
+
+.orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #d8dde5 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-duration: 22s;
+  animation-delay: -10s;
+  opacity: 0.012;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+/* Scan line */
+.scan-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(255, 255, 255, 0) 80%,
+    transparent 100%
+  );
+  animation: scan-line 8s linear infinite;
+  opacity: 0.14;
+}
+
+@keyframes scan-line {
+  0% { top: 0; opacity: 0; }
+  5% { opacity: 0.4; }
+  95% { opacity: 0.4; }
+  100% { top: 100vh; opacity: 0; }
+}
+
+/* ─── Brand Watermark ─── */
+.brand-watermark {
+  position: fixed;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+  user-select: none;
+}
+
+/* ─── Hint Bar ─── */
+.hint-bar {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  z-index: 10;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+
+.hint-bar span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ─── Corner Decorations ─── */
+.corner-tl, .corner-tr, .corner-bl, .corner-br {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.corner-tl { top: 20px; left: 20px; border-top: 1px solid rgba(255,255,255,0.12); border-left: 1px solid rgba(255,255,255,0.12); }
+.corner-tr { top: 20px; right: 20px; border-top: 1px solid rgba(255,255,255,0.12); border-right: 1px solid rgba(255,255,255,0.12); }
+.corner-bl { bottom: 20px; left: 20px; border-bottom: 1px solid rgba(255,255,255,0.12); border-left: 1px solid rgba(255,255,255,0.12); }
+.corner-br { bottom: 20px; right: 20px; border-bottom: 1px solid rgba(255,255,255,0.12); border-right: 1px solid rgba(255,255,255,0.12); }
+
+/* Subtle grid lines (very faint) */
+.app-root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.008) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.008) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+}

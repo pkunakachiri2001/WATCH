@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: rylo-hub
+    env: node
+    rootDir: hub-server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+
+  - type: web
+    name: rylo-watch
+    env: static
+    rootDir: watch-app
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    envVars:
+      - key: VITE_HUB_URL
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
